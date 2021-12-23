@@ -1,50 +1,28 @@
-<script setup lang="ts">
+<template>
+  <p class="msg">{{ msg }}</p>
+  <van-button type="primary" color="#1baeae" round @click="click">click</van-button>
+</template>
+
+<script lang="ts" setup>
   import { ref } from 'vue'
 
   defineProps<{ msg: string }>()
 
   const count = ref(0)
+  const click = () => {
+    count.value++
+    console.log(`点击了${count.value}下`)
+  }
 </script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <div />
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
-</template>
-
-<style scoped>
-  a {
-    color: #42b983;
+<style lang="scss" scoped>
+  .msg {
+    text-align: center;
+    font-size: 16px;
+    color: #1baeae;
   }
-
-  label {
-    margin: 0 0.5em;
-    font-weight: bold;
-  }
-
-  code {
-    background-color: #eee;
-    padding: 2px 4px;
-    border-radius: 4px;
-    color: #304455;
+  .van-button {
+    width: 80%;
+    margin-top: 30px;
+    font-size: 18px;
   }
 </style>
