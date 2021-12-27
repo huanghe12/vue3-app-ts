@@ -5,12 +5,12 @@ module.exports = {
   semi: false, // 未尾逗号
   vueIndentScriptAndStyle: true,
   singleQuote: true, // 单引号
-  quoteProps: 'as-needed', 
+  quoteProps: 'as-needed',
   bracketSpacing: true,
   trailingComma: 'none', // 未尾分号
   jsxBracketSameLine: false,
   jsxSingleQuote: false,
-  arrowParens: 'always',
+  arrowParens: 'avoid',
   insertPragma: false,
   requirePragma: false,
   proseWrap: 'never',
