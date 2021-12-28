@@ -8,29 +8,30 @@
  *
 -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <img alt="Vue logo" src="./assets/images/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
 </template>
 
 <script setup lang="ts">
   import HelloWorld from './components/HelloWorld.vue'
-  import { getHome } from './api/home'
+  // import { getHome } from './api/home'
   import { onMounted } from 'vue'
 
   onMounted(() => {
-    getHome().then(res => {
-      console.log(res)
-    })
+    // getHome().then(res => {
+    //   console.log(res.data)
+    // })
   })
 </script>
 
-<style>
-  /* #app {
+<style lang="scss">
+  #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-  } */
+    @include flex;
+  }
 </style>
