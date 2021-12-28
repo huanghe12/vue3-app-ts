@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "ts-md5": "^1.2.10",
     "vant": "3.3.7",
     "vue": "^3.2.25",
-    "vue-router": "4.0.12"
+    "vue-router": "4.0.12",
+    "vuex": "4.0.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.3",
