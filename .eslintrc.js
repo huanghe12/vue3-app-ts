@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 2021,
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
@@ -34,7 +34,8 @@ module.exports = {
         math: 'always'
       }
     ],
-    'vue/require-default-prop': 0
+    'vue/require-default-prop': 0,
+    'vue/multi-word-component-names': 0
   },
   globals: {
     defineProps: 'readonly'

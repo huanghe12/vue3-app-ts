@@ -8,30 +8,88 @@
  *
 -->
 <template>
-  <img alt="Vue logo" src="./assets/images/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div id="app">
+    <router-view v-slot="{ Component }" class="router-view">
+      <transition :name="state.transitionName">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import HelloWorld from './components/HelloWorld.vue'
-  // import { getHome } from './api/home'
-  import { onMounted } from 'vue'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
-  onMounted(() => {
-    // getHome().then(res => {
-    //   console.log(res.data)
-    // })
-  })
+const router = useRouter()
+const state = reactive({
+  transitionName: 'slide-left'
+})
+// 路由守卫
+router.beforeEach((to, from) => {
+  const toIndex: number = to.meta.index as number
+  const fromIndex: number = from.meta.index as number
+  if (toIndex > fromIndex) {
+    state.transitionName = 'slide-left' // 左滑动画
+  } else if (toIndex < fromIndex) {
+    state.transitionName = 'slide-right' // 右滑动画
+  } else {
+    state.transitionName = '' // 无动画
+  }
+})
 </script>
 
 <style lang="scss">
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-    @include flex;
-  }
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#app {
+  width: 100vh;
+  height: 100%;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+.router-view {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
+}
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  height: 100%;
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+  backface-visibility: hidden;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.van-badge--fixed {
+  z-index: 1000;
+}
 </style>
