@@ -77,13 +77,13 @@ $fc: #fff;
   width: $width;
   height: $height;
 }
-
+// box-sizing
 @mixin boxSizing {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+// flex布局
 @mixin flex($fd: column, $jc: center, $ai: center) {
   display: flex;
   display: -webkit-flex; /* Safari */

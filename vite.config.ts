@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
+import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +15,12 @@ export default defineConfig({
           resolveStyle: name => `vant/es/${name}/style/index`
         }
       ]
+    }),
+    // 自动引入API
+    AutoImport({
+      imports: ['vue', 'vue-router', 'pinia'],
+      //为true时在项目根目录自动创建
+      dts: 'src/types/auto-imports.d.ts'
     })
   ],
   resolve: {

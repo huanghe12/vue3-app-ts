@@ -11,7 +11,15 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: ''
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/pages/Home.vue'),
+    meta: {
+      index: 1
+    }
   }
   // {
   //   path: '/:pathMatch(.*)*',
