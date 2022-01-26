@@ -20,6 +20,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       index: 1
     }
+  },
+  {
+    path: '/category',
+    name: 'category',
+    component: () => import('@/pages/Category.vue'),
+    meta: {
+      index: 1
+    }
   }
   // {
   //   path: '/:pathMatch(.*)*',
