@@ -4,4 +4,13 @@ declare namespace APP {
     carouselUrl: string
     redirectUrl: string
   }
+  // 商品
+  interface Goods {
+    goodsId: number
+    goodsIntro: string
+    goodsName: string
+    goodsCoverImg: string
+    sellingPrice: number
+    tag: string
+  }
 }

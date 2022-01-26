@@ -26,7 +26,9 @@
         <van-icon name="manager-o" />
       </router-link>
     </header>
+    <!-- 轮播图 -->
     <Swiper :list="state.swiperList" />
+    <!-- 分类 -->
     <van-grid :column-num="5" :border="false" square icon-size="0.96rem">
       <van-grid-item
         v-for="item in state.categoryList"
@@ -36,13 +38,61 @@
         @click="$toast('敬请期待')"
       />
     </van-grid>
+    <!-- 新品 -->
+    <div class="goods-wrap">
+      <div class="title">新品上线</div>
+      <van-grid :column-num="2" class="goods-grid" :border="false">
+        <van-grid-item
+          v-for="item in state.newGoodses"
+          :key="item.goodsId"
+          class="goods-item"
+        >
+          <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
+          <p class="goods-name">{{ item.goodsName }}</p>
+          <p class="goods-price">￥{{ item.sellingPrice }}</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+    <!-- 热么商品 -->
+    <div class="goods-wrap">
+      <div class="title">热门商品</div>
+      <van-grid :column-num="2" class="goods-grid" :border="false">
+        <van-grid-item
+          v-for="item in state.hotGoodses"
+          :key="item.goodsId"
+          class="goods-item"
+        >
+          <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
+          <p class="goods-name">{{ item.goodsName }}</p>
+          <p class="goods-price">￥{{ item.sellingPrice }}</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+    <!-- 推荐商品 -->
+    <div class="goods-wrap last-goods-wrap">
+      <div class="title">最新推荐</div>
+      <van-grid :column-num="2" class="goods-grid" :border="false">
+        <van-grid-item
+          v-for="item in state.recommendGoodses"
+          :key="item.goodsId"
+          class="goods-item"
+        >
+          <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
+          <p class="goods-name">{{ item.goodsName }}</p>
+          <p class="goods-price">￥{{ item.sellingPrice }}</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+    <TabBar />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { getHome } from '@/api/home'
-import { getLocalStorage } from '@/utils/utils'
+import { getLocalStorage, prefixImgUrl } from '@/utils/utils'
 import Swiper from '@/components/Swiper.vue'
+import TabBar from '@/components/TabBar.vue'
+import { Toast } from 'vant'
 
 const state = reactive({
   headerScroll: false,
@@ -107,7 +157,10 @@ const state = reactive({
         'https://s.yezgea02.com/1604041127880/%E5%85%A8%E9%83%A8%402x.png',
       categoryId: 100010
     }
-  ]
+  ],
+  newGoodses: [] as APP.Goods[],
+  hotGoodses: [] as APP.Goods[],
+  recommendGoodses: [] as APP.Goods[]
 })
 // 判断是否登录了
 const judgeIsLogin = (): boolean => {
@@ -124,10 +177,18 @@ const listenScroll = () => {
     state.headerScroll = scrollTop > 100
   })
 }
+// 获取首页商品信息
 const getHomeInfo = async () => {
+  Toast.loading({
+    message: '加载中...',
+    forbidClick: true
+  })
   const { data } = await getHome()
-  console.log(data)
   state.swiperList = data.carousels
+  state.newGoodses = data.newGoodses
+  state.hotGoodses = data.hotGoodses
+  state.recommendGoodses = data.recommendGoodses
+  Toast.clear()
 }
 onMounted(() => {
   nextTick(() => {
@@ -190,6 +251,41 @@ onMounted(() => {
     .login {
       color: #fff;
     }
+  }
+}
+.goods-wrap {
+  .title {
+    background: #f9f9f9;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: $primary;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .goods-grid {
+    .goods-item {
+      border-bottom: 1px solid #e9e9e9;
+      .goods-img {
+        width: 120px;
+      }
+      .goods-name,
+      .goods-price {
+        text-align: center;
+        font-size: 14px;
+        color: #222333;
+        margin: 0;
+      }
+      .goods-price {
+        color: $primary;
+      }
+      &:nth-child(2n + 1) {
+        border-right: 1px solid #e9e9e9;
+      }
+    }
+  }
+  &.last-goods-wrap {
+    padding-bottom: 80px;
   }
 }
 </style>

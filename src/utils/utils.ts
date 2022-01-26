@@ -22,3 +22,12 @@ export const setLocalStorage = (key: string, value: any) => {
 export const removeLocalStorage = (key: string) => {
   window.localStorage.removeItem(key)
 }
+
+export const prefixImgUrl = (url: string): string => {
+  if (url && url.startsWith('http')) {
+    return url
+  } else {
+    url = `http://backend-api-01.newbee.ltd${url}`
+    return url
+  }
+}
