@@ -15,13 +15,15 @@
       class="home-header"
       :class="{ active: state.headerScroll }"
     >
-      <router-link to=""><i class="nbicon nbmenu2" /></router-link>
+      <router-link to="/category"><i class="nbicon nbmenu2" /></router-link>
       <div class="header-search">
         <span class="app-name">新蜂商城</span>
         <van-icon name="search" />
         <router-link class="search-title" to="">山河无恙，人间皆安</router-link>
       </div>
-      <router-link v-if="judgeIsLogin()" class="login" to="">登录</router-link>
+      <router-link v-if="judgeIsLogin()" class="login" to="/login">
+        登录
+      </router-link>
       <router-link v-else class="login" to="">
         <van-icon name="manager-o" />
       </router-link>
@@ -69,7 +71,7 @@
       </van-grid>
     </div>
     <!-- 推荐商品 -->
-    <div class="goods-wrap last-goods-wrap">
+    <div class="goods-wrap">
       <div class="title">最新推荐</div>
       <van-grid :column-num="2" class="goods-grid" :border="false">
         <van-grid-item
@@ -96,7 +98,7 @@ import { Toast } from 'vant'
 
 const state = reactive({
   headerScroll: false,
-  swiperList: [] as APP.Swiper[],
+  swiperList: [] as MAIN.Swiper[],
   categoryList: [
     {
       name: '新蜂超市',
@@ -158,9 +160,9 @@ const state = reactive({
       categoryId: 100010
     }
   ],
-  newGoodses: [] as APP.Goods[],
-  hotGoodses: [] as APP.Goods[],
-  recommendGoodses: [] as APP.Goods[]
+  newGoodses: [] as MAIN.Goods[],
+  hotGoodses: [] as MAIN.Goods[],
+  recommendGoodses: [] as MAIN.Goods[]
 })
 // 判断是否登录了
 const judgeIsLogin = (): boolean => {
@@ -283,9 +285,6 @@ onMounted(() => {
         border-right: 1px solid #e9e9e9;
       }
     }
-  }
-  &.last-goods-wrap {
-    padding-bottom: 80px;
   }
 }
 </style>

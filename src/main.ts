@@ -10,7 +10,9 @@ import {
   Grid,
   GridItem,
   Tabbar,
-  TabbarItem
+  TabbarItem,
+  NavBar,
+  Empty
 } from 'vant'
 import { createPinia } from 'pinia'
 import router from './router'
@@ -29,6 +31,8 @@ app
   .use(Grid)
   .use(Tabbar)
   .use(TabbarItem)
+  .use(NavBar)
+  .use(Empty)
 
 app.use(pinia)
 

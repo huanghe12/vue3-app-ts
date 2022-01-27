@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <header class="category-header">
-      <i class="nbicon nbfanhui" />
+      <i class="nbicon nbfanhui" @click="$router.push('/home')" />
       <div class="header-search">
         <i class="nbicon nbSearch" />
         <router-link class="search-title" to="">全场50元起步</router-link>
@@ -13,10 +13,12 @@
         <div>asdf</div>
       </ListScroll>
     </div>
+    <TabBar />
   </div>
 </template>
 <script lang="ts" setup>
 import ListScroll from '@/components/ListScroll.vue'
+import TabBar from '@/components/TabBar.vue'
 </script>
 <style lang="scss" scoped>
 .category {
@@ -55,7 +57,6 @@ import ListScroll from '@/components/ListScroll.vue'
     .van-icon-ellipsis {
       font-size: 20px;
       font-weight: bold;
-      transform: rotate(90deg);
     }
   }
 }
