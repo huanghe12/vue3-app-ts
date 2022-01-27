@@ -8,7 +8,7 @@
  *
 -->
 <template>
-  <van-tabbar active-color="#1baeae" inactive-color="#666" route>
+  <van-tabbar active-color="#1baeae" inactive-color="#666" route placeholder>
     <van-tabbar-item to="/home">
       <template #icon>
         <i class="nbicon nblvsefenkaicankaoxianban-1" />
@@ -21,13 +21,16 @@
       </template>
       <span>分类</span>
     </van-tabbar-item>
-    <van-tabbar-item :badge="cartStore.quantity ? cartStore.quantity : ''">
+    <van-tabbar-item
+      :badge="cartStore.quantity ? cartStore.quantity : ''"
+      to="/cart"
+    >
       <template #icon>
         <van-icon name="shopping-cart-o" />
       </template>
       <span>购物车</span>
     </van-tabbar-item>
-    <van-tabbar-item>
+    <van-tabbar-item to="/user">
       <template #icon>
         <i class="nbicon nblvsefenkaicankaoxianban-" />
       </template>

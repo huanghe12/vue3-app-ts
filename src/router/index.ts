@@ -28,6 +28,30 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       index: 1
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/pages/Login.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('@/pages/Cart.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('@/pages/User.vue'),
+    meta: {
+      index: 1
+    }
   }
   // {
   //   path: '/:pathMatch(.*)*',
