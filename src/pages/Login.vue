@@ -8,9 +8,54 @@
  *
 -->
 <template>
-  <div>登录</div>
+  <div class="login">
+    <NavBar title="登录" />
+    <div class="logo">
+      <img
+        src="https://s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png"
+      />
+    </div>
+    <div class="main">
+      <van-form label-align="center" @submit="onSubmit">
+        <van-field label="用户名" placeholder="用户名" />
+        <van-field label="密码" placeholder="密码" />
+        <van-field label="验证码" placeholder="输入验证码">
+          <template #button>
+            <van-button>发送验证码</van-button>
+          </template>
+        </van-field>
+        <van-button
+          class="btn"
+          round
+          block
+          color="#1baeae"
+          native-type="submit"
+        >
+          登录
+        </van-button>
+      </van-form>
+    </div>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const onSubmit = async () => {
+  console.log('登录')
+}
+</script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.login {
+  .logo {
+    @include wh(120px, 120px);
+    margin: 80px auto 20px;
+    img {
+      @include wh(100%, 100%);
+      object-fit: cover;
+    }
+  }
+  .main {
+    padding: 0 20px;
+  }
+}
+</style>

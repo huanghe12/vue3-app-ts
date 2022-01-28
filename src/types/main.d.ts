@@ -1,4 +1,4 @@
-declare namespace MAIN {
+declare namespace Main {
   // 轮播图
   interface Swiper {
     carouselUrl: string

@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 defineProps<{
-  list: APP.Swiper[]
+  list: Main.Swiper[]
 }>()
 
 const goTo = (url: string) => {
