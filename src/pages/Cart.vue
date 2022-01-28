@@ -17,7 +17,7 @@ import TabBar from '@/components/TabBar.vue'
 import NavBar from '../components/NavBar.vue'
 
 const state = reactive({
-  cartList: [] as MAIN.Cart[]
+  cartList: [] as Main.Cart[]
 })
 const queryCart = async () => {
   const res = await getCart({ params: { pageNumber: 1 } })

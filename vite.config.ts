@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
 import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,9 +20,29 @@ export default defineConfig({
     }),
     // 自动引入API
     AutoImport({
-      imports: ['vue', 'vue-router', 'pinia'],
-      //为true时在项目根目录自动创建
+      // 自动引入的API
+      imports: [
+        'vue',
+        'vue-router',
+        'pinia',
+        {
+          axios: [
+            // default imports
+            ['default', 'axios'] // import { default as axios } from 'axios',
+          ]
+        }
+      ],
+      // 指定类型声明文件，为true时在项目根目录创建
       dts: 'src/types/auto-imports.d.ts'
+    }),
+    // 自动引入组件
+    Components({
+      // 自动引入的组件库
+      resolvers: [VantResolver()],
+      // 自动加载的组件目录，默认值为 ['src/components']
+      dirs: ['src/components'],
+      // 指定类型声明文件，为true时在项目根目录创建
+      dts: 'src/types/components.d.ts'
     })
   ],
   resolve: {

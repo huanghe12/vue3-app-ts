@@ -7,7 +7,6 @@
  * 版权所有，侵权必究！
  */
 import router from '@/router'
-import axios from 'axios'
 import { Toast } from 'vant'
 import { getLocalStorage } from './utils'
 

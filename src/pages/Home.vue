@@ -92,13 +92,11 @@
 <script lang="ts" setup>
 import { getHome } from '@/api/home'
 import { getLocalStorage, prefixImgUrl } from '@/utils/utils'
-import Swiper from '@/components/Swiper.vue'
-import TabBar from '@/components/TabBar.vue'
 import { Toast } from 'vant'
 
 const state = reactive({
   headerScroll: false,
-  swiperList: [] as MAIN.Swiper[],
+  swiperList: [] as Main.Swiper[],
   categoryList: [
     {
       name: '新蜂超市',
@@ -160,9 +158,9 @@ const state = reactive({
       categoryId: 100010
     }
   ],
-  newGoodses: [] as MAIN.Goods[],
-  hotGoodses: [] as MAIN.Goods[],
-  recommendGoodses: [] as MAIN.Goods[]
+  newGoodses: [] as Main.Goods[],
+  hotGoodses: [] as Main.Goods[],
+  recommendGoodses: [] as Main.Goods[]
 })
 // 判断是否登录了
 const judgeIsLogin = (): boolean => {
