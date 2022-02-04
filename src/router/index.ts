@@ -52,6 +52,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       index: 1
     }
+  },
+  {
+    path: '/product_details',
+    name: 'product_details',
+    component: () => import('@/pages/ProductDetails.vue'),
+    meta: {
+      index: 3
+    }
   }
   // {
   //   path: '/:pathMatch(.*)*',

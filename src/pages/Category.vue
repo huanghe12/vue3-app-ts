@@ -16,7 +16,10 @@
     <TabBar />
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import ListScroll from '@/components/ListScroll.vue'
+import TabBar from '@/components/TabBar.vue'
+</script>
 <style lang="scss" scoped>
 .category {
   .category-header {

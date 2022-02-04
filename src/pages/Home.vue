@@ -24,7 +24,7 @@
       <router-link v-if="judgeIsLogin()" class="login" to="/login">
         登录
       </router-link>
-      <router-link v-else class="login" to="">
+      <router-link v-else class="login" to="/user">
         <van-icon name="manager-o" />
       </router-link>
     </header>
@@ -48,6 +48,7 @@
           v-for="item in state.newGoodses"
           :key="item.goodsId"
           class="goods-item"
+          @click="viewDetails(item.goodsId)"
         >
           <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
           <p class="goods-name">{{ item.goodsName }}</p>
@@ -63,6 +64,7 @@
           v-for="item in state.hotGoodses"
           :key="item.goodsId"
           class="goods-item"
+          @click="viewDetails(item.goodsId)"
         >
           <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
           <p class="goods-name">{{ item.goodsName }}</p>
@@ -78,6 +80,7 @@
           v-for="item in state.recommendGoodses"
           :key="item.goodsId"
           class="goods-item"
+          @click="viewDetails(item.goodsId)"
         >
           <img :src="prefixImgUrl(item.goodsCoverImg)" class="goods-img" />
           <p class="goods-name">{{ item.goodsName }}</p>
@@ -90,9 +93,13 @@
 </template>
 
 <script lang="ts" setup>
+import TabBar from '@/components/TabBar.vue'
+import Swiper from '@/components/Swiper.vue'
 import { getHome } from '@/api/home'
 import { getLocalStorage, prefixImgUrl } from '@/utils/utils'
 import { Toast } from 'vant'
+
+const router = useRouter()
 
 const state = reactive({
   headerScroll: false,
@@ -170,7 +177,7 @@ const judgeIsLogin = (): boolean => {
 const listenScroll = () => {
   window.addEventListener('scroll', () => {
     const scrollTop =
-      window.pageYOffset ||
+      window.scrollY ||
       document.documentElement.scrollTop ||
       document.body.scrollTop
     // 当滚动距离超过100时，为头部添加 active 类
@@ -189,6 +196,15 @@ const getHomeInfo = async () => {
   state.hotGoodses = data.hotGoodses
   state.recommendGoodses = data.recommendGoodses
   Toast.clear()
+}
+
+const viewDetails = (id: number) => {
+  router.push({
+    path: '/product_details',
+    query: {
+      goodsId: id
+    }
+  })
 }
 onMounted(() => {
   nextTick(() => {

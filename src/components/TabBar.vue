@@ -40,8 +40,18 @@
 </template>
 <script lang="ts" setup>
 import { useCartStore } from '@/store/cart'
+import { getLocalStorage } from '@/utils/utils'
 
 const cartStore = useCartStore()
+const route = useRoute()
+
+onMounted(() => {
+  const token = getLocalStorage('token')
+  const path = route.path
+  if (token && !['/home', '/category', '/user'].includes(path)) {
+    cartStore.updateCart()
+  }
+})
 </script>
 <style lang="scss" scoped>
 .van-tabbar {
