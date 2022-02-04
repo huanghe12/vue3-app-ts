@@ -35,7 +35,8 @@ module.exports = {
       }
     ],
     'vue/require-default-prop': 0,
-    'vue/multi-word-component-names': 0
+    'vue/multi-word-component-names': 0,
+    'vue/no-v-html': 0
   },
   globals: {
     defineProps: 'readonly'

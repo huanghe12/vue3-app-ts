@@ -30,4 +30,9 @@ declare namespace Main {
     cartItemId: number
     goodsCount: number
   } & Omit<Goods, 'tag' | 'goodsIntro'>
+  interface GoodsDetails extends Goods {
+    goodsCarouselList: Array<string>
+    goodsDetailContent: string
+    originalPrice: number
+  }
 }
