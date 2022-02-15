@@ -89,7 +89,7 @@ const onSubmit = async () => {
   if (type.value === 'login') {
     const loginData: Main.Login = {
       loginName: state.loginName,
-      passwordMd5: Md5.hashStr(state.loginPassword)
+          passwordMd5: Md5.hashStr(state.loginPassword)
     }
     const { data } = await login(loginData)
     if (data) {
