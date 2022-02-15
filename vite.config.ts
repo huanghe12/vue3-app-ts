@@ -54,7 +54,6 @@ export default defineConfig({
     ]
   },
   server: {
-    open: true,
     proxy: {
       '/api': {
         target: 'http://backend-api-01.newbee.ltd/api/v1',

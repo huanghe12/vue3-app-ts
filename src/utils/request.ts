@@ -10,6 +10,7 @@ import router from '@/router'
 import { Toast } from 'vant'
 import { getLocalStorage } from './utils'
 
+// 创建 axios 实例
 const instance = axios.create({
   baseURL: '/api',
   timeout: 5000,
@@ -20,6 +21,7 @@ const instance = axios.create({
   }
 })
 
+// 响应拦截
 instance.interceptors.response.use(response => {
   if (typeof response.data !== 'object') {
     Toast.fail('服务端异常！')
@@ -27,7 +29,7 @@ instance.interceptors.response.use(response => {
   }
   if (response.data.resultCode !== 200) {
     if (response.data.message) Toast.fail(response.data.message)
-    if (response.data.resultCode == 416) {
+    if (response.data.resultCode === 416) {
       router.push({ path: '/login' })
     }
     return Promise.reject(response.data)

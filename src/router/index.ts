@@ -54,6 +54,14 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/pages/About.vue'),
+    meta: {
+      index: 2
+    }
+  },
+  {
     path: '/product_details',
     name: 'product_details',
     component: () => import('@/pages/ProductDetails.vue'),

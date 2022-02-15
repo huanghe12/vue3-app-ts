@@ -48,7 +48,7 @@ const route = useRoute()
 onMounted(() => {
   const token = getLocalStorage('token')
   const path = route.path
-  if (token && !['/home', '/category', '/user'].includes(path)) {
+  if (token && !['/category', '/user'].includes(path)) {
     cartStore.updateCart()
   }
 })
