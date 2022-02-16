@@ -44,4 +44,15 @@ declare namespace Main {
     goodsDetailContent: string
     originalPrice: number
   }
+  interface Address {
+    addressId: string | number
+    cityName: string
+    provinceName: string
+    regionName: string
+    userName: string
+    userPhone: string | number
+    defaultFlag: number
+    userId: string | number
+    detailAddress: string
+  }
 }

@@ -40,7 +40,9 @@ import {
   Skeleton,
   CellGroup,
   Cell,
-  Divider
+  Divider,
+  AddressList,
+  AddressEdit
 } from 'vant'
 const app = createApp(App)
 
@@ -73,6 +75,8 @@ app
   .use(CellGroup)
   .use(Cell)
   .use(Divider)
+  .use(AddressList)
+  .use(AddressEdit)
 
 app.use(pinia)
 

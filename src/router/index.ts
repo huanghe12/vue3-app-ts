@@ -62,6 +62,22 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/address',
+    name: 'address',
+    component: () => import('@/pages/Address.vue'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    path: '/address-edit',
+    name: 'address-edit',
+    component: () => import('@/pages/AddressEdit.vue'),
+    meta: {
+      index: 3
+    }
+  },
+  {
     path: '/product_details',
     name: 'product_details',
     component: () => import('@/pages/ProductDetails.vue'),
